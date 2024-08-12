@@ -40,7 +40,7 @@ describe('HTTP Requests', () => {
 
     it('DELETE HTTP Call', () => {
         cy.request('DELETE', `${baseUrl}/1`).then((response) => {
-            cy.checkStatus(response, 200);
+            cy.checkStatus(response, 100);
             expect(response.body).to.be.empty;
         });
     });
