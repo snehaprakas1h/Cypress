@@ -5,7 +5,7 @@ export default defineConfig({
   screenshotOnRunFailure: true, // Take a screenshot on test failure
   screenshotsFolder: 'cypress/screenshots', // Folder to store screenshots
   videosFolder: 'cypress/videos', // Folder to store videos
-  video: false, // Disable video recording
+  video: true, // Disable video recording
 
   e2e: {
     specPattern: 'cypress/e2e/**/*.cy.{js,jsx,ts,tsx}', // Single slash and correct pattern for test files
