@@ -1,0 +1,4 @@
+extensions used in this project
+
+1. Cypress helper
+2. Cypress snippets
