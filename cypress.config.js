@@ -15,7 +15,8 @@ export default defineConfig({
     env: {
       httpUrl: 'https://jsonplaceholder.typicode.com/posts',
       postUrl: 'https://reqres.in/',
-      booksUrl: 'https://simple-books-api.glitch.me/'
+      booksUrl: 'https://simple-books-api.glitch.me/',
+      fakestoreUrl:'https://fakestoreapi.com/'
     },
     setupNodeEvents(on, config) {
       // Node event listeners can be added here
