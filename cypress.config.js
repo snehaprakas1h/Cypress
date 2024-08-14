@@ -12,7 +12,11 @@ export default defineConfig({
     testIsolation: false, // Disable test isolation between tests
     defaultCommandTimeout: 10000, // Set default command timeout to 10 seconds
     hideXHRInCommandLog: true, // Hide XHR requests from the command log
-
+    env: {
+      httpUrl: 'https://jsonplaceholder.typicode.com/posts',
+      postUrl: 'https://reqres.in/',
+      booksUrl: 'https://simple-books-api.glitch.me/'
+    },
     setupNodeEvents(on, config) {
       // Node event listeners can be added here
     },

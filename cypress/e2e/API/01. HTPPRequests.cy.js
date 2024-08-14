@@ -2,7 +2,7 @@
 
 describe('HTTP Requests', () => {
 
-    const baseUrl = 'https://jsonplaceholder.typicode.com/posts';
+    const baseUrl = Cypress.env('httpUrl');
 
     it('GET HTTP Call', () => {
         cy.request('GET', `${baseUrl}/1`).then((response) => {
@@ -40,7 +40,7 @@ describe('HTTP Requests', () => {
 
     it('DELETE HTTP Call', () => {
         cy.request('DELETE', `${baseUrl}/1`).then((response) => {
-            cy.checkStatus(response, 100);
+            cy.checkStatus(response, 200);
             expect(response.body).to.be.empty;
         });
     });
