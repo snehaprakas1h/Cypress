@@ -27,7 +27,7 @@ describe('API Endpoints with Authentication and Headers', () => {
                 clientEmail: email
             }
         }).then((response) => {
-            expect(response.status).to.eq(200); // Verify successful request
+            expect(response.status).to.eq(201); // Verify successful request
             token = response.body.accessToken;
             cy.log(`Access Token: ${token}`);
         });
