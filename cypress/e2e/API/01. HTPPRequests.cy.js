@@ -2,7 +2,7 @@
 
 describe('HTTP Requests', () => {
 
-    const baseUrl = 'https://jsonplaceholder.typicode.com/posts';
+    const baseUrl = Cypress.env('httpUrl');
 
     it('GET HTTP Call', () => {
         cy.request('GET', `${baseUrl}/1`).then((response) => {

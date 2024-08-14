@@ -1,70 +1,66 @@
 ///<reference types="cypress"/>
 import { personDetails } from "../../fixtures/personDetails";
 
-describe('Different ways of using request body for a test', () => {
+describe('API Testing with Different Request Body Approaches', () => {
+    const baseUrl = Cypress.env('postUrl');
 
-    const url = 'https://reqres.in/'
-    it('Approach 1 - Hard coaded json object', () => {
+    it('Hardcoded JSON Object', () => {
         const requestBody = {
-            "name": "amedua",
-            "job": "lead"
+            name: "amedua",
+            job: "lead"
         };
 
         cy.request({
             method: 'POST',
-            url: `${url}api/users`,
-            body: requestBody
-        }).then((response) => {
-            cy.checkStatus(response, 201);
-            expect(response.body.name).to.eq("amedua");
-            expect(response.body.job).to.eq("lead");
-        })
-
-    });
-
-    it('Approach 2 - Using dynamically generated data', () => {
-        const requestBody =
-        {
-            "name": Math.random().toString(36).substring(2, 12),
-            "job": Math.random().toString(36).substring(2, 13)
-        }
-
-        cy.request({
-            method: 'POST',
-            url: `${url}api/users`,
+            url: `${baseUrl}api/users`,
             body: requestBody
         }).then((response) => {
             cy.checkStatus(response, 201);
             expect(response.body.name).to.eq(requestBody.name);
             expect(response.body.job).to.eq(requestBody.job);
-        })
+        });
+    });
 
-    })
+    it('Dynamically Generated Data', () => {
+        const requestBody = {
+            name: Math.random().toString(36).substring(2, 12),
+            job: Math.random().toString(36).substring(2, 13)
+        };
 
-    it('Approach 3 - Using fixtures', () => {
-        cy.fixture("personDetails").then((data) => {
-            const requestBody = data;
+        cy.request({
+            method: 'POST',
+            url: `${baseUrl}api/users`,
+            body: requestBody
+        }).then((response) => {
+            cy.checkStatus(response, 201);
+            expect(response.body.name).to.eq(requestBody.name);
+            expect(response.body.job).to.eq(requestBody.job);
+        });
+    });
+
+    it('Using Fixture Data', () => {
+        cy.fixture("personDetails").then((requestBody) => {
             cy.request({
                 method: 'POST',
-                url: `${url}api/users`,
+                url: `${baseUrl}api/users`,
                 body: requestBody
             }).then((response) => {
                 cy.checkStatus(response, 201);
                 expect(response.body.name).to.eq(requestBody.name);
                 expect(response.body.job).to.eq(requestBody.job);
-            })
-        })
-    })
+            });
+        });
+    });
 
-    it('Approach 4 - Using imports', () => {
-            cy.request({
-                method: 'POST',
-                url: `${url}api/users`,
-                body: personDetails
-            }).then((response) => {
-                cy.checkStatus(response, 201);
-                expect(response.body.name).to.eq(personDetails.name);
-                expect(response.body.job).to.eq(personDetails.job);
-            })
-    })
-})
+    it('Using Imported Data', () => {
+        cy.request({
+            method: 'POST',
+            url: `${baseUrl}api/users`,
+            body: personDetails
+        }).then((response) => {
+            cy.checkStatus(response, 201);
+            expect(response.body.name).to.eq(personDetails.name);
+            expect(response.body.job).to.eq(personDetails.job);
+        });
+    });
+});
