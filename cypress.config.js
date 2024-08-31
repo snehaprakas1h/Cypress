@@ -1,4 +1,6 @@
 import { defineConfig } from "cypress";
+import { collectFailingTests } from 'cypress-plugin-last-failed';
+import cyGrep from '@bahmutov/cy-grep/src/plugin';
 
 export default defineConfig({
   trashAssetsBeforeRuns: true, // Delete previous assets (screenshots, videos) before each run
@@ -16,10 +18,13 @@ export default defineConfig({
       httpUrl: 'https://jsonplaceholder.typicode.com/posts',
       postUrl: 'https://reqres.in/',
       booksUrl: 'https://simple-books-api.glitch.me/',
-      fakestoreUrl:'https://fakestoreapi.com/'
+      fakestoreUrl:'https://fakestoreapi.com/',
     },
     setupNodeEvents(on, config) {
       // Node event listeners can be added here
+      collectFailingTests(on, config);
+      cyGrep(config); // Call the function directly
+      return config;
     },
   },
 });

@@ -16,5 +16,8 @@
 // Import commands.js using ES2015 syntax:
 import './commands'
 
-// Alternatively you can use CommonJS syntax:
-// require('./commands')
+import { failedTestToggle } from 'cypress-plugin-last-failed';
+const registerCypressGrep = require('@bahmutov/cy-grep');
+registerCypressGrep();
+
+failedTestToggle();
