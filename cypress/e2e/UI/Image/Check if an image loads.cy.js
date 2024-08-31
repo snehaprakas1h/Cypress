@@ -38,7 +38,7 @@ describe('Broken Images Test', () => {
         })
     })
 
-    it('should find the non-broken image using http request', () => {
+    it.only('should find the non-broken image using http request', () => {
         cy.visit('https://the-internet.herokuapp.com/broken_images');
 
         // Select all images within the .example container
